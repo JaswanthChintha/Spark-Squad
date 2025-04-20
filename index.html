@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>What Should I Watch?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 60%;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #008cba;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        ul {
+            list-style-type: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 What Should I Watch?</h1>
+        <form action="/recommend" method="post">
+            <input type="text" name="user_input" placeholder="Describe your mood or genre..." required>
+            <button type="submit">Get Recommendations</button>
+        </form>
+
+        {% if results %}
+        <h2>Results for: "{{ query }}"</h2>
+        <ul>
+            {% for r in results %}
+            <li><strong>{{ r.title }}</strong> ({{ r.genre }}) - Available on {{ r.platform }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
